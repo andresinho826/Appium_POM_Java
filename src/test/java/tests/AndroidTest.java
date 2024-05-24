@@ -1,5 +1,6 @@
 package tests;
 
+import io.appium.java_client.AppiumBy;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.android.AndroidDriver;
 import org.openqa.selenium.By;
@@ -30,14 +31,33 @@ public class AndroidTest {
     }
 
     @Test
-    public void click_App_Button(){
-        //code video 4.3
+    public void login_signUp_form(){
+        //code login
+        driver.findElement(By.xpath("//android.widget.TextView[@text='Login']")).click();
+
+        // login al interior de la pagina
+        driver.findElement(By.xpath("(//android.widget.TextView[@text='Login'])[1]")).click();
+        driver.findElement(new AppiumBy.ByAccessibilityId("input-email")).sendKeys("andres@gmail.com");
+        driver.findElement(new AppiumBy.ByAccessibilityId("input-password")).sendKeys("testingAppiumMobile");
+        driver.findElement(By.xpath("//android.view.ViewGroup[@content-desc='button-LOGIN']/android.view.ViewGroup")).click();
+
+        //code sign up
+        driver.findElement(By.xpath("//android.widget.TextView[@text='Sign up']")).click();
+        driver.findElement(By.xpath("//android.widget.EditText[@content-desc='input-email']")).sendKeys("andres@gmail.com");
+        driver.findElement(By.xpath("//android.widget.EditText[@content-desc='input-password']")).sendKeys("testingAppiumMobile");
+        //driver.findElement(new AppiumBy.ByAccessibilityId("input-email")).sendKeys("andres@gmail.com");
+        //driver.findElement(new AppiumBy.ByAccessibilityId("input-password")).sendKeys("testingAppiumMobile");
+        driver.findElement(new AppiumBy.ByAccessibilityId("input-repeat-password")).sendKeys("testingAppiumMobile");
+        driver.findElement(By.xpath("//android.widget.TextView[@text='SIGN UP']")).click();
+
+        /*
         driver.findElement(By.xpath("//android.widget.TextView[@text='Home']")).click();
         driver.findElement(By.xpath("//android.widget.TextView[@text='Webview']")).click();
-        driver.findElement(By.xpath("//android.widget.TextView[@text='Login']")).click();
         driver.findElement(By.xpath("//android.widget.TextView[@text='Forms']")).click();
         driver.findElement(By.xpath("//android.widget.TextView[@text='Swipe']")).click();
         driver.findElement(By.xpath("//android.widget.TextView[@text='Drag']")).click();
+
+         */
 
     }
 
