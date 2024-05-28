@@ -2,6 +2,7 @@ package pages;
 
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -22,9 +23,16 @@ public class BasePage {
     // explicit wait
     public boolean isElementDisplayed(WebElement element){
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
-        //wait.until(ExpectedConditions.visibilityOf()
         wait.until(ExpectedConditions.elementToBeClickable(element));
         return element.isDisplayed();
+    }
+
+    // explicit wait alert present
+    public void isAlertPresent(){
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
+        wait.until(ExpectedConditions.alertIsPresent());
+        Alert alert = driver.switchTo().alert();
+        alert.accept();
     }
 
     // fluent wait
@@ -33,8 +41,6 @@ public class BasePage {
                 .withTimeout(Duration.ofSeconds(15))
                 .pollingEvery(Duration.ofSeconds(2));
         wait.until(ExpectedConditions.visibilityOf(webElement));
-        //wait.until(ExpectedConditions.elementToBeClickable(webElement));
-        //wait.until(ExpectedConditions.visibilityOf(webElement));
         return webElement.isDisplayed();
     }
 
