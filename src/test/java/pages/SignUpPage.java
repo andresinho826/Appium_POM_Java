@@ -1,26 +1,26 @@
 package pages;
 
-import io.appium.java_client.AppiumDriver;
+import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class SignUpPage extends BasePage{
-    public SignUpPage(AppiumDriver driver) {
+public class SignUpPage extends BasePage {
+    public SignUpPage(AndroidDriver driver) {
         super(driver);
     }
-
-    //private  String varEmail= "new UiSelector().text('Email')";
 
     @FindBy(xpath = "//android.widget.TextView[@text='Sign up']")
     private WebElement signUpBtn;
 
-    //@FindBy(xpath = "//android.widget.EditText[@content-desc='input-email']")
-
-
-    @AndroidFindBy(uiAutomator = "new UiSelector().text('Email')")
+    @AndroidFindBy(accessibility = "input-email")
     private WebElement inputEmail;
 
+
+//android.widget.EditText[@content-desc='input-email']
+
+//android.widget.EditText[@text='Email']
+    //*[@text='Email']
 
     @FindBy(xpath = "//android.widget.EditText[@content-desc='input-password']")
     private WebElement inputPass;
@@ -31,27 +31,19 @@ public class SignUpPage extends BasePage{
     @FindBy(xpath = "//android.widget.TextView[@text='SIGN UP']")
     private WebElement subMitSignUpBtn;
 
-    public void userCreatedSignUpTab(){
+    public void userCreatedSignUpTab() {
         signUpBtn.click();
-        inputEmail.sendKeys("andres@gmail.com");
-        inputPass.sendKeys("testingAppiumMobile");
-        repeatPass.sendKeys("testingAppiumMobile");
+        inputEmail.sendKeys("andres99@gmail.com");
+        inputPass.sendKeys("testingAppiumMobilee");
+        repeatPass.sendKeys("testingAppiumMobilee");
         subMitSignUpBtn.click();
 
 
     }
-    public void clickPopUp(){
+
+    public void clickPopUpSingUp() {
         isAlertPresent();
     }
 
-
-    /*
-    //tab sign up
-        driver.findElement(By.xpath("//android.widget.TextView[@text='Sign up']")).click();
-        driver.findElement(By.xpath("//android.widget.EditText[@content-desc='input-email']")).sendKeys("andres@gmail.com");
-        driver.findElement(By.xpath("//android.widget.EditText[@content-desc='input-password']")).sendKeys("testingAppiumMobile");
-        driver.findElement(new AppiumBy.ByAccessibilityId("input-repeat-password")).sendKeys("testingAppiumMobile");
-        driver.findElement(By.xpath("//android.widget.TextView[@text='SIGN UP']")).click();
-     */
 
 }

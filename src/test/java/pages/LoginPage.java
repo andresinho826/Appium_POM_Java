@@ -1,16 +1,15 @@
 package pages;
 
-import io.appium.java_client.AppiumBy;
-import io.appium.java_client.AppiumDriver;
-import io.appium.java_client.pagefactory.AndroidBy;
+
+import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.FindBys;
+
 
 public class LoginPage extends BasePage{
-    AppiumDriver driver;
-    public LoginPage(AppiumDriver driver) {
+    AndroidDriver driver;
+    public LoginPage(AndroidDriver driver) {
         super(driver);
     }
 
@@ -34,14 +33,8 @@ public class LoginPage extends BasePage{
         submitBtn.click();
     }
 
-
-
-    /*
-    // tab login
-        driver.findElement(By.xpath("(//android.widget.TextView[@text='Login'])[1]")).click();
-        driver.findElement(new AppiumBy.ByAccessibilityId("input-email")).sendKeys("andres@gmail.com");
-        driver.findElement(new AppiumBy.ByAccessibilityId("input-password")).sendKeys("testingAppiumMobile");
-        driver.findElement(By.xpath("//android.view.ViewGroup[@content-desc='button-LOGIN']/android.view.ViewGroup")).click();
-     */
+    public void clickPopUpLogIn() {
+        isAlertPresent();
+    }
 
 }
