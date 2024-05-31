@@ -3,6 +3,7 @@ package tests;
 import org.testng.annotations.Test;
 import pages.LoginPage;
 import pages.SignUpPage;
+import pages.SwipePage;
 import pages.WebDriverioPage;
 
 
@@ -11,6 +12,7 @@ public class AndroidTest extends BaseTest {
     LoginPage loginPage;
     SignUpPage signUpPage;
     WebDriverioPage webDriverioPage;
+    SwipePage swipePage;
 
     @Test(priority = 0)
     public void login_signUp_tabs() {
@@ -28,6 +30,15 @@ public class AndroidTest extends BaseTest {
         signUpPage.userCreatedSignUpTab();
         signUpPage.clickPopUpSingUp();
 
+    }
+    @Test(priority = 1)
+    public void swipe_tab(){
+        // click on swipe tab
+        webDriverioPage = new WebDriverioPage(driver);
+        webDriverioPage.clickBtnSwipe();
+        // scroll on page
+        swipePage = new SwipePage(driver);
+        swipePage.find_bot();
 
     }
 
