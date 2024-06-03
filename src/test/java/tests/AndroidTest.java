@@ -11,13 +11,13 @@ public class AndroidTest extends BaseTest {
 
     LoginPage loginPage;
     SignUpPage signUpPage;
-    WebDriverioPage webDriverioPage;
+    public static WebDriverioPage webDriverioPage;
     SwipePage swipePage;
 
     @Test(priority = 0)
     public void login_signUp_tabs() {
         // click on login window
-        webDriverioPage = new WebDriverioPage(driver);
+        //webDriverioPage = new WebDriverioPage(driver);
         webDriverioPage.clickBtnLogin();
 
         // Login tab
@@ -34,7 +34,7 @@ public class AndroidTest extends BaseTest {
     @Test(priority = 1)
     public void swipe_tab(){
         // click on swipe tab
-        webDriverioPage = new WebDriverioPage(driver);
+        //webDriverioPage = new WebDriverioPage(driver);
         webDriverioPage.clickBtnSwipe();
         // scroll on page
         swipePage = new SwipePage(driver);

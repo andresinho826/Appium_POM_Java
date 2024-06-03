@@ -2,14 +2,8 @@ package pages;
 
 
 import io.appium.java_client.android.AndroidDriver;
-
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
-import io.appium.java_client.touch.WaitOptions;
-import io.appium.java_client.touch.offset.PointOption;
 import org.openqa.selenium.Alert;
-import org.openqa.selenium.Dimension;
-import org.openqa.selenium.Keys;
-import io.appium.java_client.TouchAction;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.interactions.PointerInput;
@@ -20,6 +14,7 @@ import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
+import java.util.Arrays;
 import java.util.List;
 
 public class BasePage {
@@ -72,6 +67,31 @@ public class BasePage {
                 .pollingEvery(Duration.ofSeconds(2));
         wait.until(ExpectedConditions.visibilityOf(webElement));
         return true;
+    }
+
+    public void dragAndDrop(WebElement sourceElement, WebElement targetElement) {
+
+        // Coordenadas del punto de inicio (centerX, centerY) y del punto final (centerX2, centerY2)
+        int centerX = sourceElement.getLocation().getX() + (sourceElement.getSize().getWidth() / 2);
+        int centerY = sourceElement.getLocation().getY() + (sourceElement.getSize().getHeight() / 2);
+
+        // Coordenadas del punto final (centerX2, centerY2)
+        int centerX2 = targetElement.getLocation().getX() + (targetElement.getSize().getWidth() / 2);
+        int centerY2 = targetElement.getLocation().getY() + (targetElement.getSize().getHeight() / 2);
+
+        // Crear el input de puntero
+        PointerInput finger = new PointerInput(PointerInput.Kind.TOUCH, "finger");
+
+        // Crear las acciones de arrastrar y soltar
+        Sequence dragNDrop = new Sequence(finger, 0);
+        dragNDrop.addAction(finger.createPointerMove(Duration.ofMillis(0), PointerInput.Origin.viewport(), centerX, centerY));
+        dragNDrop.addAction(finger.createPointerDown(PointerInput.MouseButton.LEFT.asArg()));
+        dragNDrop.addAction(finger.createPointerMove(Duration.ofMillis(700), PointerInput.Origin.viewport(), centerX2, centerY2));
+        dragNDrop.addAction(finger.createPointerUp(PointerInput.MouseButton.LEFT.asArg()));
+
+        // Realizar las acciones
+        driver.perform(Arrays.asList(dragNDrop));
+
     }
 
 
