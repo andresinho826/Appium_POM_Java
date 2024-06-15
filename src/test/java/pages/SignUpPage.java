@@ -37,8 +37,6 @@ public class SignUpPage extends BasePage {
         inputPass.sendKeys("testingAppiumMobilee");
         repeatPass.sendKeys("testingAppiumMobilee");
         subMitSignUpBtn.click();
-
-
     }
 
     public void clickPopUpSingUp() {
